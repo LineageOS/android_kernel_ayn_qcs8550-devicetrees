@@ -1,0 +1,153 @@
+&pmr735d_k {
+	status = "disabled";
+};
+
+&pmr735d_l {
+	status = "disabled";
+};
+
+&pmr735d_k_temp_alarm {
+	status = "disabled";
+};
+
+&pmr735d_l_temp_alarm {
+	status = "disabled";
+};
+
+&apps_rsc_drv2 {
+	rpmh-regulator-ldok1 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok2 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok3 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok4 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok5 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok6 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldok7 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldol3 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldol4 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldol5 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldol6 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldol7 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom1 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom2 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom3 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom4 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom5 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom6 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldom7 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon1 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon2 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon3 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon4 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon5 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon6 {
+		status = "disabled";
+	};
+
+	rpmh-regulator-ldon7 {
+		status = "disabled";
+	};
+};
+
+&regulator_ocp_notifier {
+	/delete-property/ periph-ac1-supply;
+	/delete-property/ periph-ac2-supply;
+	/delete-property/ periph-ac3-supply;
+	/delete-property/ periph-ac4-supply;
+	/delete-property/ periph-ac5-supply;
+	/delete-property/ periph-ac6-supply;
+	/delete-property/ periph-ac7-supply;
+
+	/delete-property/ periph-bc3-supply;
+	/delete-property/ periph-bc4-supply;
+	/delete-property/ periph-bc5-supply;
+	/delete-property/ periph-bc6-supply;
+	/delete-property/ periph-bc7-supply;
+
+	/delete-property/ periph-c40-supply;
+	/delete-property/ periph-c41-supply;
+	/delete-property/ periph-c42-supply;
+	/delete-property/ periph-c43-supply;
+	/delete-property/ periph-c44-supply;
+	/delete-property/ periph-c45-supply;
+	/delete-property/ periph-c46-supply;
+
+	/delete-property/ periph-d40-supply;
+	/delete-property/ periph-d41-supply;
+	/delete-property/ periph-d42-supply;
+	/delete-property/ periph-d43-supply;
+	/delete-property/ periph-d44-supply;
+	/delete-property/ periph-d45-supply;
+	/delete-property/ periph-d46-supply;
+};

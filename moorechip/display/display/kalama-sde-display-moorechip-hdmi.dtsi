@@ -1,0 +1,123 @@
+#include <dt-bindings/gpio/gpio.h>
+
+&soc {
+	vdd_hdmi_1v8: vdd-hdmi-1v8-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd_hdmi_1v8";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		gpio = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+	};
+
+	vcc_hdmi_1v8: vcc-hdmi-1v8-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc_hdmi_1v8";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		gpio = <&tlmm 10 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+	};
+
+	hdmi-connector {
+		compatible = "hdmi-connector";
+		label = "hdmi";
+		type = "d";
+
+		hpd-gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
+		ddc-i2c-bus = <&qupv3_hub_i2c0>;
+
+		port {
+			hdmi_connector_in: endpoint {
+				remote-endpoint = <&lt8912_out>;
+			};
+		};
+	};
+};
+
+&dsi_ext_bridge_1080p {
+	qcom,dsi-sec-ctrl-num = <0>;
+	qcom,dsi-sec-phy-num = <0>;
+	qcom,dsi-select-sec-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+};
+
+&qupv3_hub_i2c0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	qcom,clk-freq-out = <100000>;
+	status = "okay";
+
+	lt8912b@48 {
+		compatible = "lontium,lt8912b";
+		reg = <0x48>;
+		reset-gpios = <&tlmm 7 GPIO_ACTIVE_LOW>;
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			vdd-supply = <&vdd_hdmi_1v8>;
+			vcc-supply = <&vcc_hdmi_1v8>;
+
+			port@0 {
+				reg = <0>;
+
+				lt8912b_in: endpoint {
+					data-lanes = <0 1 2 3>;
+					remote-endpoint = <&ext_dsi_0_out>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				lt8912_out: endpoint {
+					remote-endpoint = <&hdmi_connector_in>;
+				};
+			};
+		};
+	};
+};
+
+&sde_te_active {
+	mux {
+		pins = "gpio200";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio200";
+	};
+};
+
+&sde_te_suspend {
+	mux {
+		pins = "gpio200";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio200";
+	};
+};
+
+&sde_dsi {
+	label = "secondary";
+
+	qcom,platform-te-gpio = <&tlmm 200 0>;
+
+	qcom,dsi-default-panel = <&dsi_ext_bridge_1080p>;
+
+	ports {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		port@0 {
+			reg = <0>;
+			ext_dsi_0_out: endpoint {
+				remote-endpoint = <&lt8912b_in>;
+			};
+		};
+	};
+};
