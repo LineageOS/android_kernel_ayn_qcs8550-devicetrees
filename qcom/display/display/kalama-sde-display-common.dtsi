@@ -33,6 +33,7 @@
 #include "dsi-panel-vtdr6130-dsc-fhd-plus-video.dtsi"
 #include "dsi-panel-vtdr6130-qsync-dsc-fhd-plus-144hz-cmd.dtsi"
 #include "dsi-panel-vtdr6130-qsync-dsc-fhd-plus-144hz-video.dtsi"
+#include "dsi-panel-td4328-1080p-video.dtsi"
 
 #include "kalama-sde-display-pinctrl.dtsi"
 
@@ -1149,6 +1150,19 @@
 			/* DPHY regular margins */
 			qcom,mdss-dsi-panel-phy-timings = [00 1e 08 07 24 22 08
 				08 08 02 04 00 1b 18];
+			qcom,display-topology = <1 0 1>;
+			qcom,default-topology-index = <0>;
+		};
+	};
+};
+
+&dsi_td4328_1080p_video {
+	qcom,dsi-select-clocks = "pll_byte_clk1", "pll_dsi_clk1";
+	qcom,mdss-dsi-display-timings {
+		timing@0 {
+			/* DPHY regular margins */
+			qcom,mdss-dsi-panel-phy-timings = [00 1E 08 07 18 22 08
+				08 08 02 04 00 1A 0D];
 			qcom,display-topology = <1 0 1>;
 			qcom,default-topology-index = <0>;
 		};
