@@ -1,0 +1,102 @@
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,kalama.h>
+
+&tlmm {
+	qupv3_se15_2uart_pins: qupv3_se15_2uart_pins {
+		qupv3_se15_2uart_tx_active: qupv3_se15_2uart_tx_active {
+			mux {
+				pins = "gpio74";
+				function = "qup2_se7_l2";
+			};
+
+			config {
+				pins = "gpio74";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se15_2uart_rx_active: qupv3_se15_2uart_rx_active {
+			mux {
+				pins = "gpio75";
+				function = "qup2_se7_l3";
+			};
+
+			config {
+				pins = "gpio75";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se15_2uart_sleep: qupv3_se15_2uart_sleep {
+			mux {
+				pins = "gpio74", "gpio75";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio74", "gpio75";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+};
+
+&qupv3_2 {
+	/* HS UART Instance */
+	qupv3_se15_2uart: qcom,qup_uart@89c000 {
+		compatible = "qcom,msm-geni-serial-hs";
+		reg = <0x89c000 0x4000>;
+		reg-names = "se_phys";
+		interrupts-extended = <&intc GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>;
+		clock-names = "se-clk";
+		clocks = <&gcc GCC_QUPV3_WRAP2_S7_CLK>;
+		interconnect-names = "qup-core", "qup-config", "qup-memory";
+		interconnects =
+		<&clk_virt MASTER_QUP_CORE_2 &clk_virt SLAVE_QUP_CORE_2>,
+		<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_2>,
+		<&aggre2_noc MASTER_QUP_2 &mc_virt  SLAVE_EBI1>;
+		pinctrl-names = "default", "sleep";
+		pinctrl-0 = <&qupv3_se15_2uart_tx_active>, <&qupv3_se15_2uart_rx_active>;
+		pinctrl-1 = <&qupv3_se15_2uart_sleep>;
+		qcom,wakeup-byte = <0xFD>;
+		status = "disabled";
+	};
+};
+
+&soc {
+	joystick_vdd_reg: joystick_vdd_reg {
+		compatible = "regulator-fixed";
+		regulator-name = "joystick_vdd_reg";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		gpio = <&tlmm 99 GPIO_ACTIVE_HIGH>;
+	};
+
+	// AW3911
+	joystick_levelshifter_reg: joystick_levelshifter_reg {
+		compatible = "regulator-fixed";
+		regulator-name = "joystick_levelshifter_reg";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+		gpio = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&qupv3_se15_2uart {
+	status = "okay";
+
+	joystick: joystick {
+		status = "okay";
+		compatible = "moorechip,joystick";
+		vdd-supply = <&joystick_vdd_reg>;
+		levelshifter-supply = <&joystick_levelshifter_reg>;
+
+		moorechip,boot-gpio = <&tlmm 1 GPIO_ACTIVE_LOW>;
+		moorechip,reset-gpio = <&tlmm 0 GPIO_ACTIVE_LOW>;
+	};
+};
