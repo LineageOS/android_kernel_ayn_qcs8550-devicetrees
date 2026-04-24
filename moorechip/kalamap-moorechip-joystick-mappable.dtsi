@@ -1,0 +1,37 @@
+&tlmm {
+	m0_key: m0_key {
+		m0_key_default: m0_key_default {
+			mux {
+				pins = "gpio57";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio57";
+				drive_strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	m1_key: m1_key {
+		m1_key_default: m1_key_default {
+			mux {
+				pins = "gpio58";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio58";
+				drive_strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+};
+
+&joystick {
+	pinctrl-names = "default";
+	pinctrl-0 = <&m0_key_default>, <&m1_key_default>;
+
+	m0_key-gpio = <&tlmm 57 GPIO_ACTIVE_LOW>;
+	m1_key-gpio = <&tlmm 58 GPIO_ACTIVE_LOW>;
+};

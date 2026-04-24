@@ -1,0 +1,11 @@
+/*
+&fm_i2s1_gpios {
+	status = "ok";
+};
+*/
+
+&kalama_snd {
+	qcom,mi2s-audio-intf = <0>;
+	qcom,hdmi-mi2s-audio-intf = <1>;
+	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
+};
