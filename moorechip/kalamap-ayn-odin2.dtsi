@@ -1,0 +1,225 @@
+#include "kalamap-moorechip-common.dtsi"
+#include "kalamap-moorechip-joystick-mappable.dtsi"
+#include <dt-bindings/leds/common.h>
+
+&chosen {
+	bootargs = "console=null kpti=0 log_buf_len=256K kernel.panic_on_rcu_stall=1 service_locator.enable=1 msm_rtb.filter=0x237 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops swiotlb=noforce loop.max_part=7 fw_devlink.strict=1 allow_mismatched_32bit_el0 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 kasan=off sysctl.kernel.sched_pelt_multiplier=4 can.stats_timer=0 pcie_ports=compat irqaffinity=0-2 disable_dma32=on no-steal-acc cgroup.memory=nokmem,nosocket slub_debug=- msm_drm.moorechip_dsi_display0=qcom,mdss_dsi_td4328_1080p_video: msm_drm.moorechip_dsi_display1=qcom,mdss_dsi_ext_bridge_1080p:";
+};
+
+&soc {
+	sn3112l_reg: sn3112l_reg {
+		compatible = "regulator-fixed";
+		regulator-name = "sn3112l_reg";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		gpio = <&tlmm 55 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&pm8550b_haptics {
+	qcom,use-erm = <1>;
+};
+
+&qupv3_se0_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "ok";
+
+	sn3112l: sn3112l@54 {
+		compatible = "si-en,sn3112";
+		reg = <0x54>;
+		vdd-supply = <&sn3112l_reg>;
+
+		multi-led@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			color = <LED_COLOR_ID_MULTI>;
+			label = "left:strip";
+
+			led@0 {
+				reg = <0>;
+				color = <LED_COLOR_ID_RED>;
+			};
+
+			led@1 {
+				reg = <1>;
+				color = <LED_COLOR_ID_GREEN>;
+			};
+
+			led@2 {
+				reg = <2>;
+				color = <LED_COLOR_ID_BLUE>;
+			};
+		};
+
+		multi-led@1 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <1>;
+			color = <LED_COLOR_ID_MULTI>;
+			label = "left:stick";
+
+			led@6 {
+				reg = <6>;
+				color = <LED_COLOR_ID_RED>;
+			};
+
+			led@7 {
+				reg = <7>;
+				color = <LED_COLOR_ID_GREEN>;
+			};
+
+			led@8 {
+				reg = <8>;
+				color = <LED_COLOR_ID_BLUE>;
+			};
+		};
+	};
+};
+
+&soc {
+	sn3112r_reg: sn3112r_reg {
+		compatible = "regulator-fixed";
+		regulator-name = "sn3112r_reg";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		gpio = <&tlmm 56 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&qupv3_se12_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "ok";
+
+	sn3112r: sn3112r@54 {
+		compatible = "si-en,sn3112";
+		reg = <0x54>;
+		vdd-supply = <&sn3112r_reg>;
+
+		multi-led@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			color = <LED_COLOR_ID_MULTI>;
+			label = "right:strip";
+
+			led@0 {
+				reg = <0>;
+				color = <LED_COLOR_ID_RED>;
+			};
+
+			led@1 {
+				reg = <1>;
+				color = <LED_COLOR_ID_GREEN>;
+			};
+
+			led@2 {
+				reg = <2>;
+				color = <LED_COLOR_ID_BLUE>;
+			};
+		};
+
+		multi-led@1 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <1>;
+			color = <LED_COLOR_ID_MULTI>;
+			label = "right:stick";
+
+			led@6 {
+				reg = <6>;
+				color = <LED_COLOR_ID_RED>;
+			};
+
+			led@7 {
+				reg = <7>;
+				color = <LED_COLOR_ID_GREEN>;
+			};
+
+			led@8 {
+				reg = <8>;
+				color = <LED_COLOR_ID_BLUE>;
+			};
+		};
+	};
+};
+
+&pmk8550_gpios {
+	lcd_backlight_ctrl {
+		lcd_backlight_ctrl_default: lcd_backlight_ctrl_default {
+			pins = "gpio5";
+			function = "func3";
+			input-disable;
+			output-enable;
+			output-low;
+			bias-disable;
+			power-source = <0>; /* 1.8V */
+			qcom,drive-strength = <2>;
+		};
+
+		lcd_backlight_ctrl_active: lcd_backlight_ctrl_active {
+			pins = "gpio5";
+			function = "func3";
+			input-disable;
+			output-low;
+			bias-disable;
+			power-source = <0>; /* 1.8V */
+			qcom,drive-strength = <2>;
+		};
+
+		lcd_backlight_ctrl_suspend: lcd_backlight_ctrl_suspend {
+			pins = "gpio5";
+			function = "func3";
+			input-disable;
+			output-high;
+			bias-disable;
+			power-source = <0>; /* 1.8V */
+			qcom,drive-strength = <2>;
+		};
+	};
+};
+
+&spmi_bus {
+	qcom,pmk8550@0 {
+		pmk8550_pwm_1: pwms@e800 {
+			compatible = "qcom,pwm-lpg";
+			reg = <0xe800>;
+			reg-names = "lpg-base";
+			#pwm-cells = <2>;
+			qcom,num-lpg-channels = <1>;
+			nvmem = <&pmk8550_sdam_21 &pmk8550_sdam_22>;
+			nvmem-names = "lpg_chan_sdam", "lut_sdam";
+			pinctrl-names = "default","active","suspend";
+			pinctrl-0 = <&lcd_backlight_ctrl_default>;
+			pinctrl-1 = <&lcd_backlight_ctrl_active>;
+			pinctrl-2 = <&lcd_backlight_ctrl_suspend>;
+			qcom,lut-sdam-base = <0x45>;
+			qcom,lut-patterns = <0 10 20 30 40 50 60 70 80 90 100
+					     90 80 70 60 50 40 30 20 10 0>;
+			qcom,tick-duration-us = <7800>;
+
+			lpg@1 {
+				qcom,lpg-chan-id = <1>;
+				qcom,ramp-step-ms = <100>;
+				qcom,ramp-low-index = <0>;
+				qcom,ramp-high-index = <19>;
+				qcom,ramp-pattern-repeat;
+				qcom,lpg-sdam-base = <0x48>;
+			};
+		};
+	};
+};
+
+&L14B {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <2800000>;
+	qcom,init-voltage = <2800000>;
+};
+
+&joystick {
+	moorechip,layout-nintendo;
+};

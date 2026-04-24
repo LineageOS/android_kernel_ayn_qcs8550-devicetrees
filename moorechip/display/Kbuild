@@ -1,4 +1,5 @@
-dtbo-$(CONFIG_ARCH_KALAMA) += ../../qcom/display/display/kalama-sde.dtbo
+dtbo-$(CONFIG_ARCH_KALAMA) += ../../qcom/display/display/kalama-sde.dtbo \
+		display/kalama-sde-display-ayn-odin2-overlay.dtbo
 
 always-y    := $(dtb-y) $(dtbo-y)
 subdir-y    := $(dts-dirs)
