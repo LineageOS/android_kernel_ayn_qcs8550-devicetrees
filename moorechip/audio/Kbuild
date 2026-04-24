@@ -4,7 +4,8 @@ dtbo-$(CONFIG_ARCH_KALAMA) += ../../qcom/audio/kalama-audio.dtbo \
 		kalama-audio-ayn-odin2.dtbo \
 		kalama-audio-ayn-odin2-mini.dtbo \
 		kalama-audio-ayn-odin2-portal.dtbo \
-		kalama-audio-ayn-odin2-thor.dtbo
+		kalama-audio-ayn-odin2-thor.dtbo \
+		kalama-audio-retroid-pocket-6.dtbo
 
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
