@@ -14,7 +14,8 @@ KALAMA_BOARDS += \
 	kalamap-ayn-odin2-overlay.dtbo \
 	kalamap-ayn-odin2-mini-overlay.dtbo \
 	kalamap-ayn-odin2-portal-overlay.dtbo \
-	kalamap-ayn-odin2-thor-overlay.dtbo
+	kalamap-ayn-odin2-thor-overlay.dtbo \
+	kalamap-retroid-pocket-6-overlay.dtbo
 
 kalama-dtb-$(CONFIG_ARCH_KALAMA) += $(KALAMA_BOARDS) $(KALAMA_BASE_DTB) $(KALAMA_APQ_BASE_DTB)
 kalama-overlays-dtb-$(CONFIG_ARCH_KALAMA) += $(KALAMA_BOARDS) $(KALAMA_BASE_DTB) $(KALAMA_APQ_BASE_DTB)
