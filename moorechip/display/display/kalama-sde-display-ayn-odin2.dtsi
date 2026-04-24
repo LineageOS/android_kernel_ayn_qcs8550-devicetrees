@@ -1,0 +1,220 @@
+#include <dt-bindings/gpio/gpio.h>
+
+#include "kalama-sde-display-moorechip-common.dtsi"
+#include "kalama-sde-display-moorechip-hdmi.dtsi"
+
+&tlmm {
+	display_panel_vdisp_en_p_default: display_panel_vdisp_en_p_default {
+		mux {
+			pins = "gpio101";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio101";
+			drive-strength = <8>;
+			bias-disable = <0>;
+			output-high;
+		};
+	};
+
+	display_panel_vdisp_en_n_default: display_panel_vdisp_en_n_default {
+		mux {
+			pins = "gpio102";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio102";
+			drive-strength = <8>;
+			bias-disable = <0>;
+			output-high;
+		};
+	};
+
+	pio: pio {
+		fp_pins_eint: fpeint {
+			mux {
+				pins = "gpio40";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio40";
+				bias-disable;
+				input-enable;
+			};
+		};
+
+		fp_pins_rst_output0: fprstout0 {
+			mux {
+				pins = "gpio42";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio42";
+				output-low;
+			};
+		};
+
+		fp_pins_rst_output1: fprstout1 {
+			mux {
+				pins = "gpio42";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio42";
+				output-high;
+			};
+		};
+	};
+};
+
+&soc {
+	display_panel_vdisp_en_p: display_gpio_regulator@2 {
+		compatible = "qti-regulator-fixed";
+		regulator-name = "display_panel_vdisp_en_p";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		regulator-enable-ramp-delay = <233>;
+		gpio = <&tlmm 101 0>;
+		enable-active-high;
+		regulator-boot-on;
+		proxy-supply = <&display_panel_vdisp_en_p>;
+		qcom,proxy-consumer-enable;
+		pinctrl-names = "default";
+		pinctrl-0 = <&display_panel_vdisp_en_p_default>;
+	};
+
+	display_panel_vdisp_en_n: display_gpio_regulator@3 {
+		compatible = "qti-regulator-fixed";
+		regulator-name = "display_panel_vdisp_en_n";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		regulator-enable-ramp-delay = <233>;
+		gpio = <&tlmm 102 0>;
+		enable-active-high;
+		regulator-boot-on;
+		proxy-supply = <&display_panel_vdisp_en_n>;
+		qcom,proxy-consumer-enable;
+		pinctrl-names = "default";
+		pinctrl-0 = <&display_panel_vdisp_en_n_default>;
+	};
+
+	focaltech_fp: focaltech_fp {
+		compatible = "focaltech,fp";
+		interrupt-parent = <&pio>;
+		interrupts = <05 IRQ_TYPE_EDGE_RISING>;
+
+		focaltech_fp,reset-gpio = <&tlmm 42 0>;
+		focaltech_fp,irq-gpio = <&tlmm 40 0>;
+		focaltech_fp,use-regulator;
+
+		ff_vdd-supply = <&L14B>;
+
+		focaltech_fp,read-chip;
+
+		pinctrl-names = "ff_pins_reset_low","ff_pins_reset_high","ff_pins_irq_as_int";
+		pinctrl-0 = <&fp_pins_rst_output0>;
+		pinctrl-1 = <&fp_pins_rst_output1>;
+		pinctrl-2 = <&fp_pins_eint>;
+		panel = <&dsi_td4328_1080p_video>;
+	};
+};
+
+&dsi_panel_pwr_supply {
+	qcom,panel-supply-entry@3 {
+		reg = <3>;
+		qcom,supply-name = "vdisp-en-p";
+		qcom,supply-min-voltage = <2800000>;
+		qcom,supply-max-voltage = <2800000>;
+		qcom,supply-enable-load = <10000>;
+		qcom,supply-disable-load = <0>;
+		qcom,supply-post-on-sleep = <0>;
+	};
+
+	qcom,panel-supply-entry@4 {
+		reg = <4>;
+		qcom,supply-name = "vdisp-en-n";
+		qcom,supply-min-voltage = <2800000>;
+		qcom,supply-max-voltage = <2800000>;
+		qcom,supply-enable-load = <10000>;
+		qcom,supply-disable-load = <0>;
+		qcom,supply-post-on-sleep = <0>;
+	};
+};
+
+&dsi_td4328_1080p_video {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+	pwms = <&pmk8550_pwm_1 0 1000000>;
+	qcom,bl-pmic-pwm-period-usecs = <100>;
+	qcom,mdss-brightness-max-level = <255>;
+	qcom,platform-reset-gpio = <&tlmm 133 0>;
+};
+
+&qupv3_se2_spi {
+	status = "okay";
+	focaltech@0 {
+		compatible = "focaltech,fpspi";
+		reg = <0>;
+		spi-max-frequency = <4000000>;
+		status = "okay";
+	};
+};
+
+&qupv3_se4_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	qcom,clk-freq-out = <400000>;
+	status = "okay";
+
+	synaptics@70 {
+		compatible = "synaptics,dsx-i2c";
+		reg = <0x70>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <25 0x2008>;
+		panel = <&dsi_td4328_1080p_video>;
+		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+		vdd_ana-supply = <&L2B>;
+		vcc_i2c-supply  = <&L12B>;
+		synaptics,pwr-reg-name = "vdd_ana";
+		synaptics,bus-reg-name = "vcc_i2c";
+		synaptics,ub-i2c-addr = <0x20>;
+		/* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+		synaptics,irq-gpio = <&tlmm 25 0x2008>;
+		synaptics,irq-on-state = <0>;
+		synaptics,power-delay-ms = <200>;
+		synaptics,reset-gpio = <&tlmm 24 0x0>;
+		synaptics,reset-delay-ms = <200>;
+		synaptics,reset-on-state = <0>;
+		synaptics,reset-active-ms = <20>;
+		synaptics,y-flip;
+	};
+};
+
+&sde_dsi1 {
+	label = "primary";
+
+	qcom,platform-te-gpio = <&tlmm 86 0>;
+
+	qcom,dsi-default-panel = <&dsi_td4328_1080p_video>;
+
+	vdd-supply = <&display_panel_avdd>;
+	vdisp-en-p-supply = <&display_panel_vdisp_en_p>;
+	vdisp-en-n-supply = <&display_panel_vdisp_en_n>;
+};
+
+&battery_charger {
+	qcom,display-panels = <&dsi_td4328_1080p_video>;
+};
+
+&sn3112l {
+	panel = <&dsi_td4328_1080p_video>;
+};
+
+&sn3112r {
+	panel = <&dsi_td4328_1080p_video>;
+};
