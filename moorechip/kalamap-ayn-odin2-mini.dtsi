@@ -1,0 +1,42 @@
+#include "kalamap-moorechip-common.dtsi"
+
+&chosen {
+	bootargs = "console=null kpti=0 log_buf_len=256K kernel.panic_on_rcu_stall=1 service_locator.enable=1 msm_rtb.filter=0x237 rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops swiotlb=noforce loop.max_part=7 fw_devlink.strict=1 allow_mismatched_32bit_el0 cpufreq.default_governor=performance printk.console_no_auto_verbose=1 kasan=off sysctl.kernel.sched_pelt_multiplier=4 can.stats_timer=0 pcie_ports=compat irqaffinity=0-2 disable_dma32=on no-steal-acc cgroup.memory=nokmem,nosocket slub_debug=- msm_drm.moorechip_dsi_display0=qcom,mdss_dsi_xm91080_1080p_video: msm_drm.moorechip_dsi_display1=qcom,mdss_dsi_ext_bridge_1080p:";
+};
+
+&soc {
+	miniled_reg: miniled_reg {
+		compatible = "regulator-fixed";
+		regulator-name = "miniled_reg";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		gpio = <&tlmm 55 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+&pm8550b_haptics {
+	qcom,use-erm = <1>;
+};
+
+&qupv3_se0_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "ok";
+
+	miniled@46 {
+		compatible = "ayn,miniled";
+		reg = <0x46>;
+		vdd-supply = <&miniled_reg>;
+		vcc_1v2-supply = <&L11B>; 
+		vcc_3v3-supply = <&BOB2>; 
+	};
+};
+
+&joystick {
+	moorechip,layout-xbox;
+};
+
+&regulator_ocp_notifier {
+	/delete-property/ periph-1cb-supply;
+};
