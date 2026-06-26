@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49739f4f_e0c90211",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15841
+      },
+      "writtenOn": "2026-06-26T02:52:30Z",
+      "side": 1,
+      "message": "Sorry for the drive-by review, you might have already fixed this locally",
+      "revId": "b191e8ca88524ab2bffa10596d02a605b648bf90",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3870a98_8005a5b4",
+        "filename": "moorechip/kalamap-moorechip-common.dtsi",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 15841
+      },
+      "writtenOn": "2026-06-26T02:52:30Z",
+      "side": 1,
+      "message": "```suggestion\n\tcd-gpios \u003d \u003c\u0026pm8550_gpios 12 GPIO_ACTIVE_LOW\u003e;\n```\n\nSD card wasn\u0027t working on the Thor, from investigating upstream DTBs, I\u0027m pretty sure this should be LOW for all the odin2 family devices\n\nOdin2 — ODIN2/…/kalamap-hdk.dtsi#L4 (also kalama-qrd.dtsi#L24) - https://github.com/Ayn8550Dev/AYN_QCS8550_DEVICETREE_RELEASE/blob/00a35d726e0f567ed24ab7b1567e258d6cc98a23/ODIN2/VENDOR.13.2.6/kernel_platform/qcom/proprietary/devicetree/qcom/kalamap-hdk.dtsi#L4\nOdin2 Mini — ODIN2_MINI/…/kalamap-hdk.dtsi#L4 (also kalama-qrd.dtsi#L24) - https://github.com/Ayn8550Dev/AYN_QCS8550_DEVICETREE_RELEASE/blob/00a35d726e0f567ed24ab7b1567e258d6cc98a23/ODIN2_MINI/VENDOR.13.2.6/kernel_platform/qcom/proprietary/devicetree/qcom/kalamap-hdk.dtsi#L4\nOdin2 Portal — ODIN2_PORTAL/…/kalamap-hdk.dtsi#L4 (also kalama-qrd.dtsi#L24) - https://github.com/Ayn8550Dev/AYN_QCS8550_DEVICETREE_RELEASE/blob/00a35d726e0f567ed24ab7b1567e258d6cc98a23/ODIN2_PORTAL/VENDOR.13.2.6/kernel_platform/qcom/proprietary/devicetree/qcom/kalamap-hdk.dtsi#L4\nOdin2 Thor — THOR/…/kalamap-hdk.dtsi#L4 (also kalama-qrd.dtsi#L25) — plus the live stock-FW FDT I pulled from the device. - https://github.com/Ayn8550Dev/AYN_QCS8550_DEVICETREE_RELEASE/blob/00a35d726e0f567ed24ab7b1567e258d6cc98a23/THOR/VENDOR.13.2.6/kernel_platform/qcom/proprietary/devicetree/qcom/kalamap-hdk.dtsi#L4\n\nI did validate that GPIO_ACTIVE_LOW did restore external sdcard support on my Thor.",
+      "revId": "b191e8ca88524ab2bffa10596d02a605b648bf90",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
