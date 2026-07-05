@@ -1,7 +1,7 @@
 #include "kalamap-moorechip-common.dtsi"
-#include "kalamap-moorechip-joystick-mappable.dtsi"
-#include "kalamap-moorechip-joystick-nintendo.dtsi"
-#include "kalamap-moorechip-vibrator-erm.dtsi"
+#include "joystick/kalamap-moorechip-joystick-mappable.dtsi"
+#include "joystick/kalamap-moorechip-joystick-nintendo.dtsi"
+#include "vibrator/kalamap-moorechip-vibrator-erm.dtsi"
 #include <dt-bindings/leds/common.h>
 
 &chosen {
