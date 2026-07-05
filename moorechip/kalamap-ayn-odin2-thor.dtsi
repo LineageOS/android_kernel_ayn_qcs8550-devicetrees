@@ -1,4 +1,5 @@
 #include "kalamap-moorechip-common.dtsi"
+#include "kalamap-moorechip-joystick-nintendo.dtsi"
 #include "kalamap-moorechip-lighting-htr3212.dtsi"
 
 &chosen {
@@ -134,10 +135,6 @@
 	regulator-min-microvolt = <3000000>;
 	regulator-max-microvolt = <3000000>;
 	qcom,init-voltage = <3000000>;
-};
-
-&joystick {
-	moorechip,layout-nintendo;
 };
 
 &pm8550_rgb {
