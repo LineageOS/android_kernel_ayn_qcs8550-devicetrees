@@ -1,8 +1,8 @@
 #include "../qcom/kalama-qrd.dtsi"
 
-#include "kalamap-moorechip-joystick.dtsi"
-#include "kalamap-moorechip-thermal.dtsi"
-#include "kalamap-moorechip-rpmh.dtsi"
+#include "joystick/kalamap-moorechip-joystick.dtsi"
+#include "thermal/kalamap-moorechip-thermal.dtsi"
+#include "rpmh/kalamap-moorechip-rpmh.dtsi"
 
 &msm_vidc {
 	vidc,firmware-name = "vpu30_4v";
