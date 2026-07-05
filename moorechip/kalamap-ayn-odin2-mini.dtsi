@@ -16,10 +16,6 @@
 	};
 };
 
-&pm8550b_haptics {
-	qcom,use-erm = <1>;
-};
-
 &qupv3_se0_i2c {
 	#address-cells = <1>;
 	#size-cells = <0>;

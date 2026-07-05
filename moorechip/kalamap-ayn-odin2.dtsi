@@ -1,6 +1,7 @@
 #include "kalamap-moorechip-common.dtsi"
 #include "kalamap-moorechip-joystick-mappable.dtsi"
 #include "kalamap-moorechip-joystick-nintendo.dtsi"
+#include "kalamap-moorechip-vibrator-erm.dtsi" 
 #include <dt-bindings/leds/common.h>
 
 &chosen {
@@ -16,10 +17,6 @@
 		enable-active-high;
 		gpio = <&tlmm 55 GPIO_ACTIVE_HIGH>;
 	};
-};
-
-&pm8550b_haptics {
-	qcom,use-erm = <1>;
 };
 
 &qupv3_se0_i2c {
