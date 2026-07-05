@@ -16,6 +16,24 @@
       "message": "I\u0027ll probably upload a patchset changing the labels before merge. Just preparing things for RGB settings in AynParts.",
       "revId": "34944f6b0959987bccc0865b31edb99074344088",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fb21e67_af927b6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29242
+      },
+      "writtenOn": "2026-07-05T09:58:59Z",
+      "side": 1,
+      "message": "Done.Writing an implementation to control each LED,and have it match the physical location of the LED based on the label would be a nightmare. Since as observed on RP6 vs Thor, the lef/right bottom/top left/right stick LEDs are flipped. Might be able to write something to do half x color and half y color, but meh.. Initial impl will be single color per stick.. Make it generic here to match odin2 (can only control the whole stick there) so we can write to left:stick* and right:stick*.",
+      "parentUuid": "e620d7dd_a11aa2d3",
+      "revId": "34944f6b0959987bccc0865b31edb99074344088",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
