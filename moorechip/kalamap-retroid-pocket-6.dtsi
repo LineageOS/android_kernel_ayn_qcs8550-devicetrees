@@ -1,5 +1,6 @@
 #include "kalamap-moorechip-common.dtsi"
 #include "kalamap-moorechip-joystick-mappable.dtsi"
+#include "kalamap-moorechip-joystick-nintendo.dtsi"
 #include "kalamap-moorechip-leds-htr3212.dtsi"
 
 &chosen {
@@ -74,10 +75,6 @@
 // TODO: Unknown, but removal of this breaks booting recovery.
 &L1B {
 	regulator-always-on;
-};
-
-&joystick {
-	moorechip,layout-nintendo;
 };
 
 &pm8550_rgb {
