@@ -1,5 +1,6 @@
 #include "kalamap-moorechip-common.dtsi"
 #include "kalamap-moorechip-joystick-mappable.dtsi"
+#include "kalamap-moorechip-joystick-nintendo.dtsi"
 #include <dt-bindings/leds/common.h>
 
 &chosen {
@@ -218,8 +219,4 @@
 	regulator-min-microvolt = <2800000>;
 	regulator-max-microvolt = <2800000>;
 	qcom,init-voltage = <2800000>;
-};
-
-&joystick {
-	moorechip,layout-nintendo;
 };
