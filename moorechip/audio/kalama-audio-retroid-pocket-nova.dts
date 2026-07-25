@@ -1,0 +1,23 @@
+/dts-v1/;
+/plugin/;
+
+#include "kalama-audio-moorechip.dtsi"
+#include "kalama-audio-moorechip-no-hdmi.dtsi"
+
+/ {
+	compatible = "qcom,kalama-hdk", "qcom,kalama", "qcom,hdk",
+			"qcom,kalamap";
+	qcom,msm-id = <603 0x20000>;
+	qcom,board-id = <0x1001f 0>;
+	moorechip,device-id = <6>;
+};
+
+&qupv3_hub_i2c2 {
+	aw883xx_smartpa@34 {
+		sound-channel = <1>;
+	};
+
+	aw883xx_smartpa@35 {
+		sound-channel = <0>;
+	};
+};
