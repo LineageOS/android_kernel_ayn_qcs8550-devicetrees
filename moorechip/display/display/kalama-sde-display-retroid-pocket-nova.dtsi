@@ -285,3 +285,7 @@
 &htr3212r {
 	panel = <&dsi_xingxing_4_5_1280_960_cmd>;
 };
+
+&joystick {
+	panel = <&dsi_xingxing_4_5_1280_960_cmd>;
+};
