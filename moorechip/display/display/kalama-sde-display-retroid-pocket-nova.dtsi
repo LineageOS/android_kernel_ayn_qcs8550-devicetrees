@@ -287,5 +287,5 @@
 };
 
 &joystick {
-        panel = <&dsi_xingxing_4_5_1280_960_cmd>;
+	panel = <&dsi_xingxing_4_5_1280_960_cmd>;
 };
