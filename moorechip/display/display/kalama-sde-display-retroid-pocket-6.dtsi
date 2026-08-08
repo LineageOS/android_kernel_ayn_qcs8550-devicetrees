@@ -286,3 +286,7 @@
 &htr3212r {
 	panel = <&dsi_vtdr6130_visionox_cog_cmd>;
 };
+
+&joystick {
+	panel = <&dsi_vtdr6130_visionox_cog_cmd>;
+};

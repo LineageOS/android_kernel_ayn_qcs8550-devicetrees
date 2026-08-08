@@ -65,3 +65,7 @@
 &battery_charger {
 	qcom,display-panels = <&dsi_xm91080_1080p_video>;
 };
+
+&joystick {
+	panel = <&dsi_xm91080_1080p_video>;
+};

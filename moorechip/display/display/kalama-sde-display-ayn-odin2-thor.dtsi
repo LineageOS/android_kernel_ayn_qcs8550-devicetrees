@@ -352,3 +352,8 @@
 &htr3212r {
 	panel = <&dsi_icna3520_1080p_dsc_cmd>;
 };
+
+&joystick {
+	panel = <&dsi_icna3520_1080p_dsc_cmd>;
+	secondary-panel = <&dsi_ch13726a_amoled_video>;
+};
