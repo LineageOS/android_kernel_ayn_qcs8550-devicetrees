@@ -218,3 +218,7 @@
 &sn3112r {
 	panel = <&dsi_td4328_1080p_video>;
 };
+
+&joystick {
+	panel = <&dsi_td4328_1080p_video>;
+};
