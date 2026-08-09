@@ -8,6 +8,7 @@
 		regulator-max-microvolt = <3300000>;
 		enable-active-high;
 		gpio = <&tlmm 55 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&joystick_vdd_reg>;
 	};
 };
 
@@ -123,6 +124,7 @@
 		regulator-max-microvolt = <3300000>;
 		enable-active-high;
 		gpio = <&tlmm 56 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&joystick_vdd_reg>;
 	};
 };
 
