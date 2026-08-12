@@ -76,3 +76,7 @@
 &htr3212r {
 	panel = <&dsi_icna3512_1080p_dsc_cmd>;
 };
+
+&joystick {
+	panel = <&dsi_icna3512_1080p_dsc_cmd>;
+};
