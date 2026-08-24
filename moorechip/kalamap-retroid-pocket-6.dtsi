@@ -1,4 +1,5 @@
 #include "kalamap-moorechip-common.dtsi"
+#include "joystick/kalamap-moorechip-joystick-1000-range.dtsi"
 #include "joystick/kalamap-moorechip-joystick-mappable.dtsi"
 #include "joystick/kalamap-moorechip-joystick-nintendo.dtsi"
 #include "leds/kalamap-moorechip-leds-htr3212.dtsi"
