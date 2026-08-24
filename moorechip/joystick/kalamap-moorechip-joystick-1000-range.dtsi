@@ -1,0 +1,10 @@
+&joystick {
+        moorechip,stick-left-x-min = <(-1000)>;
+        moorechip,stick-left-x-max = <1000>;
+        moorechip,stick-left-y-min = <(-1000)>;
+        moorechip,stick-left-y-max = <1000>;
+        moorechip,stick-right-x-min = <(-1000)>;
+        moorechip,stick-right-x-max = <1000>;
+        moorechip,stick-right-y-min = <(-1000)>;
+        moorechip,stick-right-y-max = <1000>;
+};
