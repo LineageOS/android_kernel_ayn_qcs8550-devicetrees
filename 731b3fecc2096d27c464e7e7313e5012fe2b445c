@@ -22,6 +22,30 @@
       },
       "revId": "731b3fecc2096d27c464e7e7313e5012fe2b445c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "481f4178_7d799b7f",
+        "filename": "qcom/display/display/kalama-sde-display-common.dtsi",
+        "patchSetId": 9
+      },
+      "lineNbr": 1268,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2026-09-24T21:55:39Z",
+      "side": 1,
+      "message": "Done - I pulled /sys/firmware/fdt, the common one was the one in-use anyway.",
+      "parentUuid": "75897bf2_789c41b7",
+      "range": {
+        "startLine": 1268,
+        "startChar": 3,
+        "endLine": 1268,
+        "endChar": 34
+      },
+      "revId": "731b3fecc2096d27c464e7e7313e5012fe2b445c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
