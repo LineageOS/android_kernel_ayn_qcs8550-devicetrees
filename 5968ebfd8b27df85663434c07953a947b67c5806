@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1c2a64a_dc52b240",
+        "filename": "qcom/display/display/dsi-panel-ch13726a-amoled-video.dtsi",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-09-24T19:05:14Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\t\t\t05 01 00 00 14 00 02 29 00\n\t\t\t\t];\r\n```",
+      "range": {
+        "startLine": 43,
+        "startChar": 5,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "5968ebfd8b27df85663434c07953a947b67c5806",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ce29380_62d48dca",
+        "filename": "qcom/display/display/dsi-panel-ch13726a-amoled-video.dtsi",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-09-24T19:05:14Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\t\t\t05 01 00 00 00 00 02 29 00\n\t\t\t\t];\r\n```",
+      "revId": "5968ebfd8b27df85663434c07953a947b67c5806",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b662605e_98baa4a6",
+        "filename": "qcom/display/display/dsi-panel-ch13726a-amoled-video.dtsi",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-09-24T19:05:14Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\t\t\t05 01 00 00 00 00 02 29 00\n\t\t\t\t];\r\n```",
+      "revId": "5968ebfd8b27df85663434c07953a947b67c5806",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "913737a1_c5fb78e1",
+        "filename": "qcom/display/display/dsi-panel-ch13726a-amoled-video.dtsi",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-09-24T19:05:14Z",
+      "side": 1,
+      "message": "```suggestion\n\t\t\t\tqcom,mdss-dsi-off-command \u003d [\n\t\t\t\t\t05 01 00 00 32 00 02 28 00\r\n\t\t\t\t\t05 01 00 00 78 00 02 10 00\n\t\t\t\t];\r\n```",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 33
+      },
+      "revId": "5968ebfd8b27df85663434c07953a947b67c5806",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5619a2e6_e5c9fe37",
+        "filename": "qcom/display/display/kalama-sde-display-common.dtsi",
+        "patchSetId": 5
+      },
+      "lineNbr": 1267,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-09-24T19:05:14Z",
+      "side": 1,
+      "message": "```suggestion\n\t\ttiming@0 {\n```",
+      "range": {
+        "startLine": 1267,
+        "startChar": 2,
+        "endLine": 1267,
+        "endChar": 11
+      },
+      "revId": "5968ebfd8b27df85663434c07953a947b67c5806",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
